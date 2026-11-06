@@ -3,6 +3,23 @@ import { ArrowRight, ArrowUpRight, CalendarDays, ClipboardList, Clock3, Gamepad2
 import type { PageContext } from './reference-pages';
 
 export const RULES_PDF = '/regulamento-champions-marks-league.pdf';
+const INSTAGRAM_URL = 'https://www.instagram.com/arena_marks?igsh=MWE3cXY4NXV5NmQ2aw%3D%3D';
+const MASTER_SPONSOR = { name: 'NVIDIA', logo: '/sponsors/nvidia.svg' };
+
+function MasterSponsor() {
+  return <span className="marks-master">
+    <small>Patrocinador Master</small>
+    <span><img src={MASTER_SPONSOR.logo} alt="" width="20" height="20" /><b>{MASTER_SPONSOR.name}</b></span>
+  </span>;
+}
+const sampleSponsors = [
+  ['Adidas', 'adidas'],
+  ['Red Bull', 'redbull'],
+  ['NVIDIA', 'nvidia'],
+  ['PlayStation', 'playstation'],
+  ['Twitch', 'twitch'],
+  ['Discord', 'discord'],
+];
 
 const clubs = [
   ['Real Madrid', 'real-madrid'],
@@ -52,7 +69,10 @@ export function MarksHeader({ registration = false, active = '/' }: { registrati
             <Link href="/campeonato" aria-current={active === '/campeonato' ? 'page' : undefined}>Campeonato</Link>
             <Link href="/regulamento" aria-current={active === '/regulamento' ? 'page' : undefined}>Regulamento</Link>
           </nav>
-          {registration ? <span className="marks-header-current" aria-current="page">Inscrição</span> : <Link className="marks-gold" href="/inscricao">Inscreva-se</Link>}
+          <div className="marks-header-actions">
+            <MasterSponsor />
+            {registration ? <span className="marks-header-current" aria-current="page">Inscrição</span> : <Link className="marks-gold" href="/inscricao">Inscreva-se</Link>}
+          </div>
         </div>
       </header>
   );
@@ -60,7 +80,7 @@ export function MarksHeader({ registration = false, active = '/' }: { registrati
 
 export function MarksFooter() {
   const socials = [
-    { label: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/arena_marks?igsh=MWE3cXY4NXV5NmQ2aw%3D%3D' },
+    { label: 'Instagram', icon: Instagram, href: INSTAGRAM_URL },
     { label: 'YouTube', icon: Youtube, href: 'https://www.youtube.com/@ARENAMARKS' },
   ];
 
@@ -79,6 +99,7 @@ export function MarksFooter() {
           <Link href="/campeonato">Sobre o campeonato</Link>
           <Link href="/regulamento">Regulamento</Link>
           <Link href="/inscricao">Inscrição</Link>
+          <Link href="/seja-um-patrocinador">Seja um patrocinador</Link>
         </nav>
         <div className="marks-footer-social">
           <h2>Redes sociais</h2>
@@ -86,6 +107,14 @@ export function MarksFooter() {
             <a key={label} href={href} target="_blank" rel="noopener"><Icon size={18} />{label}<ArrowUpRight size={14} /></a>
           ))}
         </div>
+      </div>
+      <div className="marks-wrap marks-footer-sponsors">
+        <div><h2>Patrocinadores</h2><small>Marcas ilustrativas</small></div>
+        <ul aria-label="Logomarcas ilustrativas">
+          {sampleSponsors.map(([brand, slug]) => (
+            <li key={slug}><img src={`/sponsors/${slug}.svg`} alt={brand} width="23" height="23" /></li>
+          ))}
+        </ul>
       </div>
       <div className="marks-wrap marks-footer-bottom">
         <small>© {new Date().getFullYear()} Arena Marks. Todos os direitos reservados.</small>
@@ -95,7 +124,7 @@ export function MarksFooter() {
   );
 }
 
-export function ReferenceHome({ state, view = 'home' }: PageContext & { view?: 'home' | 'competition' | 'rules' }) {
+export function ReferenceHome({ state, view = 'home' }: PageContext & { view?: 'home' | 'competition' | 'rules' | 'sponsor' }) {
   const { title, date, time, venue, game } = state.settings;
   const titleMatch = title.match(/^(Champions)\s+(.+)$/i);
   const eventDate = date
@@ -103,7 +132,7 @@ export function ReferenceHome({ state, view = 'home' }: PageContext & { view?: '
     : 'A definir';
   return (
     <div className="marks-home">
-      <MarksHeader active={view === 'competition' ? '/campeonato' : view === 'rules' ? '/regulamento' : '/'} />
+      <MarksHeader active={view === 'competition' ? '/campeonato' : view === 'rules' ? '/regulamento' : view === 'sponsor' ? '/seja-um-patrocinador' : '/'} />
       <main>
         {view === 'home' && <>
         <section className="marks-hero" aria-labelledby="marks-title">
@@ -120,8 +149,8 @@ export function ReferenceHome({ state, view = 'home' }: PageContext & { view?: '
         <div className="marks-facts marks-reveal">
           <div className="marks-wrap marks-facts-inner">
             <div><Users size={19} aria-hidden="true" /><span><b>32</b> vagas</span></div>
+            <MasterSponsor />
             <div><Gamepad2 size={19} aria-hidden="true" /><span>{game}</span></div>
-            <div><MapPin size={19} aria-hidden="true" /><span>Torneio presencial</span></div>
           </div>
         </div>
         <section className="marks-section marks-prizes">
@@ -186,6 +215,41 @@ export function ReferenceHome({ state, view = 'home' }: PageContext & { view?: '
             </ol>
           </div>
         </section>}
+        {view === 'home' && <section id="patrocinadores" className="marks-section marks-sponsors" aria-labelledby="marks-sponsors-title">
+          <div className="marks-wrap">
+            <div className="marks-sponsors-heading">
+              <h2 id="marks-sponsors-title">Patrocinadores</h2>
+              <p>Marcas ilustrativas. Nenhum patrocínio está confirmado.</p>
+            </div>
+            <ul className="marks-sponsor-logos" aria-label="Logomarcas ilustrativas">
+              {sampleSponsors.map(([brand, slug]) => (
+                <li key={slug}><img src={`/sponsors/${slug}.svg`} alt="" width="34" height="34" /><strong>{brand}</strong></li>
+              ))}
+            </ul>
+            <div className="marks-sponsor-callout">
+              <div><h3>Seja um patrocinador</h3><p>Associe sua marca à Champions Marks League.</p></div>
+              <Link className="marks-text-link" href="/seja-um-patrocinador">Conhecer a proposta <ArrowRight size={15} aria-hidden="true" /></Link>
+            </div>
+          </div>
+        </section>}
+        {view === 'sponsor' && <>
+          <section className="marks-section marks-sponsor-page">
+            <div className="marks-wrap">
+              <p>{title}</p>
+              <h1>Seja um patrocinador</h1>
+              <p>Faça parte de um torneio presencial que reúne jogadores e torcedores em torno do futebol e do videogame.</p>
+              <div className="marks-actions">
+                <a className="marks-gold" href={INSTAGRAM_URL} target="_blank" rel="noopener"><Instagram size={17} aria-hidden="true" /> Fale com a Arena Marks</a>
+              </div>
+            </div>
+          </section>
+          <section className="marks-section">
+            <div className="marks-wrap marks-sponsors-inner">
+              <div><h2>Sobre o evento</h2><p>Uma competição presencial de {game}, com 32 vagas e disputas da fase de grupos à final.</p></div>
+              <div className="marks-sponsor-invite"><h3>Converse com a organização</h3><p>Conte um pouco sobre sua marca e o tipo de parceria que você tem em mente.</p><a className="marks-text-link" href={INSTAGRAM_URL} target="_blank" rel="noopener">Enviar mensagem no Instagram <ArrowUpRight size={15} aria-hidden="true" /></a></div>
+            </div>
+          </section>
+        </>}
         {view === 'rules' && <section className="marks-section marks-rules">
           <div className="marks-wrap">
             <div className="marks-rules-heading">

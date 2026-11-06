@@ -12,7 +12,8 @@ async function main() {
     const routes = [['/', 'index.html', '.marks-hero h1'],
       ['/inscricao', 'inscricao.html', '.reference-form-grid'],
       ['/campeonato', 'campeonato.html', '.marks-about h1'],
-      ['/regulamento', 'regulamento.html', '.marks-rules h1']];
+      ['/regulamento', 'regulamento.html', '.marks-rules h1'],
+      ['/seja-um-patrocinador', 'seja-um-patrocinador.html', '.marks-sponsor-page h1']];
     for (const [route, file, selector] of routes) {
       await page.goto(base + route);
       await page.locator(selector).waitFor();
@@ -39,7 +40,7 @@ async function main() {
           if (href === '/') link.setAttribute('href', './index.html');
           else if (href.startsWith('/#')) link.setAttribute('href', './index.html' + href.slice(1));
           else if (['/inscricao', '/inscrever'].includes(href)) link.setAttribute('href', './inscricao.html');
-          else if (['/campeonato', '/regulamento'].includes(href)) link.setAttribute('href', '.' + href + '.html');
+          else if (['/campeonato', '/regulamento', '/seja-um-patrocinador'].includes(href)) link.setAttribute('href', '.' + href + '.html');
           else if (href === '/regulamento-champions-marks-league.pdf') link.setAttribute('href', '.' + href);
           else if (href.startsWith('/')) link.remove();
         }
@@ -63,6 +64,7 @@ async function main() {
     }
     await fs.writeFile(path.join(target, '.nojekyll'), '');
     await fs.cp(path.join(__dirname, '..', 'public', 'clubs'), path.join(target, 'clubs'), { recursive: true });
+    await fs.cp(path.join(__dirname, '..', 'public', 'sponsors'), path.join(target, 'sponsors'), { recursive: true });
   } finally {
     await browser.close();
   }

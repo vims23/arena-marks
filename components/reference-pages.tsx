@@ -2,7 +2,7 @@
 import {useEffect,useState,type FormEvent} from 'react';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
-import {MarksHeader,MarksFooter} from './reference-home';
+import {MarksHeader,MarksFooter,RULES_PDF} from './reference-home';
 import {registrationApi} from '../lib/registration-api';
 import {ArrowLeft,ArrowRight,ArrowUpRight,CalendarDays,Check,CheckCheck,ChevronDown,ChevronRight,Clock3,Copy,Crown,Download,Expand,ExternalLink,FileText,Flag,Gamepad2,Goal,HelpCircle,Layers3,MapPin,Menu,Monitor,Pause,Play,Plus,Radio,RotateCcw,Save,Search,Send,Server,Settings,Shield,Square,Star,Trophy,Upload,UserCheck,UserRound,Users,Volume2,X} from 'lucide-react';
 import {clock,playerById,standing,type ArenaState,type Match,type Player} from '../lib/model';

@@ -2,6 +2,7 @@ import { randomBytes, timingSafeEqual } from 'node:crypto';
 import { createServer, request } from 'node:http';
 
 const password = randomBytes(12).toString('base64url');
+const upstreamPort = Number(process.env.ARENA_PREVIEW_PORT || 3101);
 const expected = Buffer.from('Basic ' + Buffer.from('arena:' + password).toString('base64'));
 const pages = new Set(['/', '/inscricao', '/inscrever']);
 const assets = new Set(['/arena-event.jpg', '/arena-marks.png', '/arena-marks-symbol.png', '/favicon.ico']);
@@ -29,7 +30,7 @@ const server = createServer((incoming, outgoing) => {
   for (const name of ['accept', 'rsc', 'next-router-state-tree', 'next-router-prefetch', 'next-router-segment-prefetch']) {
     if (incoming.headers[name]) headers[name] = incoming.headers[name];
   }
-  const upstream = request({ hostname: '127.0.0.1', port: 3101, method: incoming.method, path, headers }, response => {
+  const upstream = request({ hostname: '127.0.0.1', port: upstreamPort, method: incoming.method, path, headers }, response => {
     for (const name of ['content-type', 'content-length']) {
       if (response.headers[name]) outgoing.setHeader(name, response.headers[name]);
     }

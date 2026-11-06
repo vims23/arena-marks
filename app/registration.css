@@ -1,0 +1,108 @@
+.marks-registration {
+  --reg-line: #dce4ee;
+  --reg-muted: #4e5f74;
+  --reg-blue: #174988;
+  --reg-pale: #f4f7fb;
+}
+
+.marks-header-current { color: #174988; font-weight: 750; font-size: 14px; }
+.marks-registration { background: #edf2f7; }
+.marks-registration-intro {
+  background: linear-gradient(90deg, #101d2c 12%, #101d2cf2 36%, #101d2c35), url('/arena-event.jpg') center 43% / cover;
+  border-bottom: 2px solid #b78f4b;
+  color: #fff;
+  padding-block: 14px 17px;
+}
+.marks-registration-intro a { display: inline-flex; align-items: center; gap: 7px; color: #f0cc89; }
+.marks-registration-intro a:hover { color: #ffe2a8; }
+.marks-registration-intro h1 { margin-top: 6px; font-size: 40px; line-height: 1.1; }
+.marks-registration-intro p { color: #dce6f1; margin-top: 4px; font-size: 15px; overflow-wrap: anywhere; }
+
+.marks-registration .registration-reference-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(270px, 340px);
+  align-items: start;
+  gap: 56px;
+  padding-block: 32px 44px;
+}
+.marks-registration .registration-stepper { padding: 0 0 24px; border-bottom: 1px solid var(--reg-line); }
+.marks-registration .registration-stepper::before { top: 15px; inset-inline: 12.5%; background: var(--reg-line); }
+.marks-registration .registration-stepper > div { min-width: 0; text-align: center; }
+.marks-registration .registration-stepper > div > span { width: 32px; height: 32px; border: 1px solid #bccbdb; background: white; color: var(--reg-muted); font-family: inherit; font-size: 14px; font-weight: 700; }
+.marks-registration .registration-stepper > div.active > span { background: var(--reg-blue); color: white; border-color: var(--reg-blue); box-shadow: none; }
+.marks-registration .registration-stepper > div.complete > span { background: #e9f3ed; border-color: #afcdbb; color: #246449; }
+.marks-registration .registration-stepper > div > small { color: var(--reg-muted); font-size: 13px; overflow-wrap: anywhere; }
+.marks-registration .registration-stepper > div.active > small { color: var(--reg-blue); font-weight: 750; }
+
+.marks-registration .registration-panel { background: none; border: 0; border-radius: 0; min-height: 0; padding: 24px 0 0; }
+.marks-registration .registration-panel-heading > svg { color: var(--reg-blue); fill: none; width: 23px; height: 23px; }
+.marks-registration .registration-panel-heading h2 { font-size: 23px; font-weight: 750; }
+.marks-registration .registration-panel-heading p,
+.marks-registration .reference-field { color: var(--reg-muted); font-size: 14px; }
+.marks-registration .reference-field { color: inherit; }
+.marks-registration .reference-field > i { color: #a33224; }
+.marks-registration .reference-field > span { background: white; border-color: #bccbdb; min-height: 46px; }
+.marks-registration .reference-field > span > svg { color: #486789; border-color: var(--reg-line); }
+.marks-registration .reference-field input,
+.marks-registration .reference-field select { color: #152438; min-width: 0; height: 44px; font-size: 16px; }
+.marks-registration .reference-field input::placeholder { color: #596c83; }
+.marks-registration .reference-field select option { background: white; }
+.marks-registration .reference-field > span:focus-within,
+.marks-registration .reference-upload:focus-within { border-color: var(--reg-blue); box-shadow: 0 0 0 2px #17498830; }
+.marks-registration .reference-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 22px; }
+.marks-registration .photo-field { grid-column: 1 / -1; }
+.marks-registration .reference-upload { background: var(--reg-pale); border-color: #8ca2bc; padding: 14px; gap: 14px; }
+.marks-registration .reference-upload > svg { color: var(--reg-blue); flex-shrink: 0; margin: 0; width: 28px; }
+.marks-registration .reference-upload small { color: var(--reg-muted); font-size: 12px; }
+.marks-registration .reference-upload b { background: white; border-color: #bccbdb; width: fit-content; max-width: 100%; font-size: 12px; }
+.marks-registration .registration-command-row { flex-wrap: wrap; }
+.marks-registration .registration-command-row > button { flex: 0 1 auto; min-width: 0; font-size: 14px; }
+.marks-registration .gold-button { background: #d8ac58; border-color: transparent; color: #1d170e; box-shadow: none; }
+.marks-registration .gold-button:hover:not(:disabled) { background: #e6bf77; box-shadow: none; }
+.marks-registration .outline-button { background: white; border-color: #bccbdb; color: var(--reg-blue); }
+.marks-registration .outline-button:hover:not(:disabled) { background: var(--reg-pale); border-color: var(--reg-blue); }
+.marks-registration .local-privacy { border-color: var(--reg-line); color: var(--reg-muted); font-size: 12px; }
+.marks-registration .draft-restored { color: var(--reg-blue); font-size: 13px; }
+.marks-registration .form-error { color: #9d2a24; background: #fff3f1; border-color: #eac1bc; }
+
+.marks-registration .event-registration-aside { background: #dfe8f2; border-top: 2px solid #b78f4b; padding: 23px; gap: 24px; }
+.marks-registration .event-registration-aside { --reg-line: #bdcddd; }
+.marks-registration :is(.event-summary, .next-steps) { background: none; border: 0; border-radius: 0; padding: 0; }
+.marks-registration :is(.event-summary, .next-steps) > h2 { font-size: 17px; font-weight: 750; }
+.marks-registration :is(.event-summary, .next-steps) > h2 > svg { color: var(--reg-blue); flex-shrink: 0; }
+.marks-registration .event-summary dl { margin-top: 8px; }
+.marks-registration .event-summary dl > div { grid-template-columns: 18px 57px minmax(0, 1fr); border-color: var(--reg-line); font-size: 13px; }
+.marks-registration .event-summary dl svg { color: var(--reg-blue); width: 17px; }
+.marks-registration .event-summary dt { color: inherit; }
+.marks-registration .event-summary dd { color: var(--reg-muted); overflow-wrap: anywhere; }
+.marks-registration .next-steps h2 { border-top: 1px solid var(--reg-line); border-bottom: 0; padding: 18px 0 0; margin-bottom: 8px; }
+.marks-registration .next-steps > div { grid-template-columns: 26px minmax(0, 1fr); gap: 2px 10px; padding: 7px 0; }
+.marks-registration .next-steps > div > b { grid-row: span 2; width: 26px; height: 26px; font-size: 13px; border-color: #cad8e9; background: white; color: var(--reg-blue); box-shadow: none; }
+.marks-registration .next-steps > div > strong { font-size: 13px; padding: 0; }
+.marks-registration .next-steps > div > p { grid-column: 2; font-size: 13px; color: var(--reg-muted); }
+.marks-registration :is(.reference-review-list dt, .registration-review span, .reference-consent small, .reference-registration-success p) { color: var(--reg-muted); }
+.marks-registration :is(.reference-review-list dd, .reference-consent, .registration-rules-summary p) { color: inherit; }
+.marks-registration :is(.registration-review p, .registration-rules-summary > button, .reference-registration-success > strong) { color: var(--reg-blue); }
+.marks-registration :is(.reference-review-list > div, .registration-rules-summary) { border-color: var(--reg-line); font-size: 14px; }
+.marks-registration .registration-review img { border-color: var(--reg-line); flex-shrink: 0; }
+.marks-registration .registration-review > div { min-width: 0; overflow-wrap: anywhere; }
+.marks-registration .registration-rules-summary > svg { color: #80612a; }
+.marks-registration .reference-consent input { accent-color: var(--reg-blue); }
+.marks-registration .reference-registration-success > svg { color: #246449; }
+.marks-registration .reference-registration-success > span { background: #fff4dd; color: #684b16; border-color: #e5cc99; }
+.marks-registration .rules-reference { background: white; color: #152438; border-color: var(--reg-line); }
+.marks-registration .rules-reference :is(p, ol) { color: var(--reg-muted); }
+.marks-registration .rules-reference .modal-title h2 svg { color: var(--reg-blue); }
+
+@media (max-width: 900px) {
+  .marks-registration .registration-reference-grid { gap: 28px; }
+}
+@media (max-width: 760px) {
+  .marks-registration .registration-reference-grid { grid-template-columns: minmax(0, 1fr); }
+  .marks-registration-intro { background-image: linear-gradient(90deg, #101d2cf7, #101d2ca6), url('/arena-event.jpg'); }
+  .marks-registration-intro h1 { font-size: 32px; }
+}
+@media (max-width: 520px) {
+  .marks-registration .reference-form-grid { grid-template-columns: minmax(0, 1fr); }
+  .marks-registration .registration-stepper > div > small { font-size: 11px; }
+  .marks-registration .registration-command-row > button { width: 100%; }
+}
